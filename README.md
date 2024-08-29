@@ -16,9 +16,9 @@
 
 Install LogWiz via npm:
 
-\`\`\`bash
+```bash
 npm install logwiz
-\`\`\`
+```
 
 ## Getting Started
 
@@ -26,71 +26,71 @@ Here's a quick example to get you up and running with LogWiz:
 
 ### TypeScript
 
-\`\`\`typescript
-import { SimpleLogger, logwiz } from 'logwiz';
+```typescript
+import { Logger, logwiz } from 'logwiz';
 
 const loggerOptions: logwiz.LoggerOptions = {
   level: "info",
   transports: ["console", "cloudwatch"],
 };
 
-const logger = new SimpleLogger(loggerOptions);
+const logger = new Logger(loggerOptions);
 
 logger.info("This is an info message");
 logger.warn("This is a warning message");
 logger.error("This is an error message");
 logger.debug("This is a debug message");
-\`\`\`
+```
 
 ### JavaScript
 
-\`\`\`javascript
-const { SimpleLogger } = require('logwiz');
+```javascript
+const { Logger } = require('logwiz');
 
 const loggerOptions = {
   level: "info",
   transports: ["console", "cloudwatch"],
 };
 
-const logger = new SimpleLogger(loggerOptions);
+const logger = new Logger(loggerOptions);
 
 logger.info("This is an info message");
 logger.warn("This is a warning message");
 logger.error("This is an error message");
 logger.debug("This is a debug message");
-\`\`\`
+```
 
 ## API Reference
 
 ### LoggerOptions
 
-\`\`\`typescript
+```typescript
 interface LoggerOptions {
   level: "info" | "warn" | "error" | "debug";
   transports: ("console" | "cloudwatch")[];
 }
-\`\`\`
+```
 
 - \`level\`: The minimum level of logs that should be processed.
 - \`transports\`: An array of transports where the logs should be sent.
 
-### SimpleLogger
+### Logger
 
 The core class for logging. Provides methods for logging at different levels.
 
 #### Methods
 
-- \`log(level: string, message: string, meta?: any): void\`
-- \`info(message: string, meta?: any): void\`
-- \`warn(message: string, meta?: any): void\`
-- \`error(message: string, meta?: any): void\`
-- \`debug(message: string, meta?: any): void\`
+- log(level: string, message: string, meta?: any): void
+- info(message: string, meta?: any): void
+- warn(message: string, meta?: any): void
+- error(message: string, meta?: any): void
+- debug(message: string, meta?: any): void
 
 ## Custom Transports
 
 LogWiz allows you to define custom transports for logging. Here's a simple example of creating a custom transport:
 
-\`\`\`typescript
+```typescript
 class CustomTransport {
   log(level: string, message: string, meta?: any): void {
     // Custom logic to handle log messages
@@ -98,17 +98,11 @@ class CustomTransport {
 }
 
 const customTransport = new CustomTransport();
-\`\`\`
+```
 
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute, please fork the repository and use a feature branch. Pull requests are warmly welcome.
-
-1. Fork the repository.
-2. Create your feature branch (\`git checkout -b feature/AmazingFeature\`).
-3. Commit your changes (\`git commit -m 'Add some AmazingFeature'\`).
-4. Push to the branch (\`git push origin feature/AmazingFeature\`).
-5. Open a pull request.
 
 ## License
 

@@ -5,9 +5,17 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build" : "tsc"
+    "build": "tsc"
   },
-  "keywords": ["logging", "cloudwatch", "typescript"],
+  "keywords": [
+    "logging",
+    "cloudwatch",
+    "typescript"
+  ],
   "author": "Abhishek Bhat",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhi-Bhat18/logwiz.git"
+  }
 }
