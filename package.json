@@ -1,0 +1,13 @@
+{
+  "name": "logwiz",
+  "version": "0.1.0",
+  "description": "Browser logger inspired by winston logger",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build" : "tsc"
+  },
+  "keywords": ["logging", "cloudwatch", "typescript"],
+  "author": "Abhishek Bhat",
+  "license": "MIT"
+}
