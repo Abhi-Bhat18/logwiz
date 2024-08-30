@@ -1,7 +1,10 @@
+import { LogLevel, LoggerOptions, LokiTransport } from "./types";
+import { ConsoleTransport , CloudWatchTransport } from "./types";
 
 export class Logger {
-  private level: logwiz.LogLevel;
-  private transports: (logwiz.ConsoleTransport | logwiz.CloudWatchTransport)[];
+  private level: LogLevel;
+
+  private transports: (ConsoleTransport | CloudWatchTransport | LokiTransport)[];
 
   private readonly logOrder = {
     debug: 0,
@@ -10,17 +13,31 @@ export class Logger {
     error: 3,
   };
 
-  constructor(options: logwiz.LoggerOptions) {
+  constructor (options: LoggerOptions) {
     this.level = options.level;
     this.transports = [];
   }
 
-  log(level: logwiz.LogLevel, message: string, meta?: object) {
+  configure = (options : LoggerOptions) => { 
+
+  }
+
+  log(level: LogLevel, message: string, meta?: object) {
     if (this.logOrder[this.level] > this.logOrder[level]) {
       return;
     }
+
+    let formattedMsg = level.toUpperCase() + '-' + message
+
+    if(meta && typeof(meta) =='object') { 
+      formattedMsg += JSON.stringify(meta);
+    } 
+
+    this.transports.forEach( transport => { 
+
+    })
     
-    console.log(`${level} ${message}`);
+    console.log(`${level.toUpperCase()} - ${message}`);
   }
 
   info(message: string, meta?: object) {

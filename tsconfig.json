@@ -6,10 +6,6 @@
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
-    "typeRoots": [
-      "index.d.ts",
-      "src/transport/*/*.d.ts"
-    ]
   },
   "include": ["src", "index.d.ts"],
   "exclude": ["node_modules", "dist"]
