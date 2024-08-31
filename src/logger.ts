@@ -1,10 +1,10 @@
+import { Transport } from "./transports/transport";
 import { LogLevel, LoggerOptions, LokiTransport } from "./types";
-import { ConsoleTransport , CloudWatchTransport } from "./types";
 
 export class Logger {
   private level: LogLevel;
 
-  private transports: (ConsoleTransport | CloudWatchTransport | LokiTransport)[];
+  private transports: Transport[];
 
   private readonly logOrder = {
     debug: 0,
@@ -13,31 +13,27 @@ export class Logger {
     error: 3,
   };
 
-  constructor (options: LoggerOptions) {
+  constructor(options: LoggerOptions) {
     this.level = options.level;
-    this.transports = [];
-  }
-
-  configure = (options : LoggerOptions) => { 
-
+    this.transports = options.transports || [];
   }
 
   log(level: LogLevel, message: string, meta?: object) {
+
     if (this.logOrder[this.level] > this.logOrder[level]) {
       return;
     }
 
-    let formattedMsg = level.toUpperCase() + '-' + message
+    let formattedMsg = `[${level.toUpperCase()}] - ${message}`
 
-    if(meta && typeof(meta) =='object') { 
+    if (meta && typeof (meta) == 'object') {
       formattedMsg += JSON.stringify(meta);
-    } 
+    }
 
-    this.transports.forEach( transport => { 
-
+    this.transports.forEach(transport => {
+      transport.log({ level, message: formattedMsg })
     })
-    
-    console.log(`${level.toUpperCase()} - ${message}`);
+
   }
 
   info(message: string, meta?: object) {

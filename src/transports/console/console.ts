@@ -1,37 +1,37 @@
-import { TransportOptions , LogEntry } from "../../types";
-class ConsoleTransport {
-    
-  private options: TransportOptions;
+import { LogEntry } from "../../types";
+import { Transport, TransportConfig } from "../transport";
 
-  constructor(options: TransportOptions = {}) {
-    this.options = {
-      level: "info",
-      format: (info) => `[${info.level}] ${info.message}`,
-      ...options,
-    };
+class ConsoleTransport extends Transport {
+
+  constructor(config: TransportConfig) {
+    super(config)
   }
 
-  log(info: LogEntry): void {
-    if (this.options.format) {
-      const message = this.options.format(info);
+  log(log: LogEntry, callback: () => void): void {
 
-      switch (info.level) {
-        case "error":
-          console.error(message);
-          break;
-        case "warn":
-          console.warn(message);
-          break;
-        case "info":
-          console.info(message);
-          break;
-        case "debug":
-          console.debug(message);
-          break;
-        default:
-          console.log(message);
-      }
+    const message = log.message
+
+    switch (log.level) {
+      case "error":
+        console.error(message);
+        break;
+      case "warn":
+        console.warn(message);
+        break;
+      case "info":
+        console.info(message);
+        break;
+      case "debug":
+        console.debug(message);
+        break;
+      default:
+        console.log(message);
     }
+
+    if(callback) { 
+      callback()
+    }
+
   }
 }
 

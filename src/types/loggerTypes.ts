@@ -1,8 +1,10 @@
+import { Transport } from "../transports/transport";
+
 export type LogLevel = "info" | "warn" | "error" | "debug";
 
 export interface LoggerOptions {
   level: LogLevel;
-  transports: ("console" | "cloudwatch")[];
+  transports: Transport[]
 }
 
 export interface TransportOptions {
