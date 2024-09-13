@@ -1,1 +1,3 @@
-export * as Logger from "./logger";
+export * from './types';
+export * from "./logger";
+export * from "./transports/console";

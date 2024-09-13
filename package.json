@@ -4,6 +4,9 @@
   "description": "Browser logger inspired by winston logger",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "tsc"
   },
@@ -17,5 +20,8 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Abhi-Bhat18/logwiz.git"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cloudwatch-logs": "^3.645.0"
   }
 }
